@@ -24,7 +24,7 @@ export default function Home() {
         setError(prev => !prev);
     }
 
-    const handleTicketTitleChange = (event) => {
+    const handleTicketTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
 
         setTicketTitle(value);
@@ -58,7 +58,7 @@ export default function Home() {
 
     return (
         <main>
-            <Title>Jira Ticket -> Branch</Title>
+            <Title>{"Jira Ticket -> Branch"}</Title>
             <section>
                 <label>
                     Is a new branch?
