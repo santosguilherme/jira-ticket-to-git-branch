@@ -8,19 +8,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/roboto": "4.5.3",
+    "@mui/icons-material": "5.4.2",
+    "@mui/material": "5.4.2",
+    "@mui/styled-engine-sc": "5.4.2",
+    "@mui/styles": "5.4.2",
     "next": "12.0.10",
     "react": "17.0.2",
+    "react-copy-to-clipboard": "5.0.4",
     "react-dom": "17.0.2",
     "styled-components": "5.3.3"
   },
   "devDependencies": {
-    "@types/node": "17.0.18",
-    "@types/react": "17.0.39",
-    "@types/react-dom": "17.0.11",
-    "@types/styled-components": "5.1.22",
-    "babel-plugin-styled-components":  "2.0.2",
+    "babel-plugin-styled-components": "2.0.2",
     "eslint": "8.9.0",
     "eslint-config-next": "latest",
-    "typescript": "4.5.5"
+    "next-transpile-modules": "9.0.0"
   }
 }
