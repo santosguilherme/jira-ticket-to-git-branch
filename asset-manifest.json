@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/jira-ticket-to-git-branch/static/css/main.4d25112c.css",
-    "main.js": "/jira-ticket-to-git-branch/static/js/main.b0d956d7.js",
-    "static/js/787.30af0269.chunk.js": "/jira-ticket-to-git-branch/static/js/787.30af0269.chunk.js",
+    "main.js": "/jira-ticket-to-git-branch/static/js/main.3a670507.js",
+    "static/js/787.8c33f9db.chunk.js": "/jira-ticket-to-git-branch/static/js/787.8c33f9db.chunk.js",
     "static/media/roboto-all-500-normal.woff": "/jira-ticket-to-git-branch/static/media/roboto-all-500-normal.52cb737b682eb9661ee1.woff",
     "static/media/roboto-all-700-normal.woff": "/jira-ticket-to-git-branch/static/media/roboto-all-700-normal.ef6d1d09b20b877fee4e.woff",
     "static/media/roboto-all-400-normal.woff": "/jira-ticket-to-git-branch/static/media/roboto-all-400-normal.376ea5d93f71583052f6.woff",
@@ -37,11 +37,11 @@
     "static/media/roboto-greek-ext-700-normal.woff2": "/jira-ticket-to-git-branch/static/media/roboto-greek-ext-700-normal.9674bc0ae12c2551d9d1.woff2",
     "index.html": "/jira-ticket-to-git-branch/index.html",
     "main.4d25112c.css.map": "/jira-ticket-to-git-branch/static/css/main.4d25112c.css.map",
-    "main.b0d956d7.js.map": "/jira-ticket-to-git-branch/static/js/main.b0d956d7.js.map",
-    "787.30af0269.chunk.js.map": "/jira-ticket-to-git-branch/static/js/787.30af0269.chunk.js.map"
+    "main.3a670507.js.map": "/jira-ticket-to-git-branch/static/js/main.3a670507.js.map",
+    "787.8c33f9db.chunk.js.map": "/jira-ticket-to-git-branch/static/js/787.8c33f9db.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4d25112c.css",
-    "static/js/main.b0d956d7.js"
+    "static/js/main.3a670507.js"
   ]
 }
