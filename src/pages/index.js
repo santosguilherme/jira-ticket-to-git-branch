@@ -1,19 +1,17 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import CopyIcon from "@mui/icons-material/ContentCopy";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import Container from "@mui/material/Container";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
-import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+
+import Card from "../components/Card";
 
 const StyledContainer = styled(Container)`
   padding-top: 1rem;
@@ -23,7 +21,7 @@ const StyledPaper = styled(Paper)`
   padding: 1rem;
 `;
 
-const TitlePaper = styled(StyledPaper)`
+const PrimaryPaper = styled(StyledPaper)`
   border-bottom: 1px solid ${({ theme }) => theme.palette.primary.main};
 `;
 
@@ -55,15 +53,18 @@ const generateGitBranchCommand = (ticketTitle, isNewBranch, isError) => {
 
   command.push(branchName);
 
-  return command.join(" ");
+  return {
+    command: command.join(" "),
+    branchName,
+  };
 };
 
 export default function Home() {
   const [isNewBranch, setNewBranch] = React.useState(true);
   const [isError, setError] = React.useState(false);
   const [ticketTitle, setTicketTitle] = React.useState("");
-  const [gitCommand, setGitCommand] = React.useState("");
   const [isLoading, setLoading] = React.useState(null);
+  const [generatedItems] = React.useState([]);
 
   const handleNewBranchChange = () => {
     setNewBranch((prev) => !prev);
@@ -82,10 +83,22 @@ export default function Home() {
   const handleGenerateClick = () => {
     setLoading(true);
 
+    const { command, branchName } = generateGitBranchCommand(
+      ticketTitle,
+      isNewBranch,
+      isError
+    );
+
+    generatedItems.unshift({
+      id: `${Date.now()}`, // TODO: fix
+      ticketTitle,
+      gitBranch: branchName,
+      isError,
+      isNewBranch,
+      gitCommand: command,
+    });
+
     setTimeout(() => {
-      setGitCommand(
-        generateGitBranchCommand(ticketTitle, isNewBranch, isError)
-      );
       setLoading(false);
     }, 800);
   };
@@ -94,25 +107,19 @@ export default function Home() {
     setNewBranch(true);
     setError(false);
     setTicketTitle("");
-    setGitCommand("");
     setLoading(null);
-  };
-
-  const handleCopyClick = () => {
-    // TODO
-    console.warn("copied!");
   };
 
   return (
     <StyledContainer>
       <Stack spacing={2}>
-        <TitlePaper>
+        <PrimaryPaper>
           <Typography variant="h5" component="h1">
             Convert the Jira ticket title to a git Branch
           </Typography>
-        </TitlePaper>
+        </PrimaryPaper>
 
-        <StyledPaper>
+        <PrimaryPaper>
           <Grid container spacing={2}>
             <Grid item>
               <FormControlLabel
@@ -168,39 +175,16 @@ export default function Home() {
               </Button>
             </Grid>
           </Grid>
-        </StyledPaper>
+        </PrimaryPaper>
 
-        {isLoading !== null && (
-          <StyledPaper>
-            <Stack spacing={2} direction="row">
-              {isLoading ? (
-                <Skeleton width="100%">
-                  <TextField />
-                </Skeleton>
-              ) : (
-                <TextField value={gitCommand} fullWidth disabled />
-              )}
-
-              {isLoading ? (
-                <Skeleton variant="circular">
-                  <IconButton>
-                    <CopyIcon />
-                  </IconButton>
-                </Skeleton>
-              ) : (
-                <CopyToClipboard text={gitCommand}>
-                  <IconButton
-                    aria-label="Copy git command"
-                    onClick={handleCopyClick}
-                    disabled={!gitCommand}
-                  >
-                    <CopyIcon fontSize="inherit" />
-                  </IconButton>
-                </CopyToClipboard>
-              )}
-            </Stack>
-          </StyledPaper>
-        )}
+        {isLoading !== null &&
+          generatedItems.map((item, index) => (
+            <Card
+              key={item.id}
+              isLoading={isLoading && index === 0}
+              item={item}
+            />
+          ))}
       </Stack>
     </StyledContainer>
   );
