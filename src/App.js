@@ -1,9 +1,11 @@
 import React from "react";
-import CssBaseline  from '@mui/material/CssBaseline';
-import {  ThemeProvider } from '@mui/material/styles';
-import theme from './styles/theme';
-import GlobalStyles from './styles/Global';
-import IndexPage from "./pages"
+
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+
+import IndexPage from "./pages";
+import GlobalStyles from "./styles/Global";
+import theme from "./styles/theme";
 
 function App() {
   return (

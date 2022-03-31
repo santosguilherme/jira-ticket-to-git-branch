@@ -1,7 +1,10 @@
-import { Global as EmotionGlobal, css} from "@emotion/react";
+import React from "react";
+
+import { Global as EmotionGlobal, css } from "@emotion/react";
 
 const globalStyles = css`
-  html, body {
+  html,
+  body {
     height: 100%;
   }
   #root {
@@ -10,10 +13,8 @@ const globalStyles = css`
   }
 `;
 
-const Global = () => {
-  return (
-    <EmotionGlobal styles={globalStyles} />
-  );
+function Global() {
+  return <EmotionGlobal styles={globalStyles} />;
 }
 
 export default Global;
