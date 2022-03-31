@@ -26,10 +26,17 @@ const TitlePaper = styled(StyledPaper)`
   border-bottom: 1px solid ${({ theme }) => theme.palette.primary.main};
 `;
 
-const transformTicketTitle = (title = '') => {
-  const [ticketId, ...rest] = title.trim().replaceAll(" - ", " ").split(" ");
+const transformTicketTitle = (ticketTitle = '') => {
+  const NON_ALPHANUMERIC_REGEX = /[^0-9a-z\s]/gi;
+  const MULTIPLE_SPACES_REGEX = /\s{2,}/g;
 
-  return [ticketId, rest.join("-").toLocaleLowerCase()].join("-");
+  const [ticketId, ...rest] = ticketTitle.trim().split(" ");
+
+  const titleRaw = rest.join(" ").toLocaleLowerCase();
+
+  const title = titleRaw.replace(NON_ALPHANUMERIC_REGEX, '').replace(MULTIPLE_SPACES_REGEX,' ');
+
+  return [ticketId.toUpperCase(), ...title.split(" ")].join("-");
 };
 
 const generateGitBranchCommand =(ticketTitle, isNewBranch, isError) => {
@@ -73,7 +80,7 @@ export default function Home() {
     setTimeout(() => {
       setGitCommand(generateGitBranchCommand(ticketTitle, isNewBranch, isError));
       setLoading(false);
-    }, 2000);
+    }, 800);
   };
 
   const handleResetClick = () => {
